@@ -1,0 +1,64 @@
+----------------------------------------------------------------------------------------
+					LESSON 1: 'COMPONENTS & OBJECT REFERENCES'
+----------------------------------------------------------------------------------------
+ Unity implements the 'Entity Component System' (ECS) design pattern.  With this pattern,
+ the 'entities' (game objects) are comprised of 'components' (scripts deriving from 
+ 'MonoBehaviour') which define the object's behavior, state, and capabilities.  An 'empty'
+ game object only contains a 'Transform' component which describes its position, rotation,
+ and scale within the game world (or 'Scene').
+ 
+ In addition to component composition, game objects can be composed of other game objects
+ to form a tree data structure.  This architecture of composition allows the developer
+ to retrieve references to game objects and their components from almost anywhere, provided
+ they are aware of the way their object hierarchy is structured and the context in which
+ their components are executing (i.e. which game object the component 'lives' on.)
+ 
+ In this example, our scene contains several 'ProviderSphere' objects.  These objects each
+ have a 'ColorProviderComponent' attached which simply defines which primary color the cube
+ should change to when the provider is referenced by the 'ColorReceiverComponent' on the 
+ 'ReceiverCube'. 
+ 
+ For learning purposes, the 'ColorReceiverComponent' offers two ways of assigning a reference
+ to a 'ColorProviderComponent'--either specifying the script directly, or by providing a game object.
+ Typically, it is better to store a reference to the more-specific component than to a game object
+ (unless you specifically need the game object reference) since you would then need to search for the
+ specific components on the provided object anyway.  In addition, if your script makes assumptions
+ about a game object being passed to it, you can run into unexpected errors or other problems when
+ an incorrect object reference is supplied or is unexpectedly missing certain components.
+ 
+ To illustrate how components are instantiated and how references to these instances work, try
+ assigning each of the provider spheres to the 'provider' property of the 'ColorReceiverComponent' 
+ on the 'ReceiverCube'.  Note that while each sphere makes use of the same 'ColorProviderComponent'
+ script, each one specifies a different cube color, and the color of the cube itself reflects the
+ provider instance assigned to its receiver component.  
+ 
+ This demonstrates one of the basic principles of object-oriented programming. It demonstrates that
+ classes (scripts) represent a blueprint or TEMPLATE from which objects can be instantiated.  While
+ each object shares and executes the same code, its STATE (variables, properties, etc.) are unique
+ and can be changed independent of other instances. 
+ 
+ 
+ Discussion Questions:
+ 
+ - Drag each of the provider spheres from the hierarchy onto the 'Provider' property of the 'ColorReceiverComponent'
+   on the 'ReceiverCube'.
+   
+   - What happens to the 'ReceiverCube' as the referenced component changes and why?
+ 
+ - Note what happens if you assign references to both 'Provider' and 'Provider Object' on the 'Receiver Object's 
+   'ColorReceiverComponent'.  Also, note what happens when you only assign or change the 'Provider Object' reference.
+   
+	- Why does one affect the other as it does?
+   
+	- Why does it update automatically?
+   
+   
+ - Try moving the individual provider spheres, then move their parent object, 'Providers'.
+	
+	- What happens when the parent object is transformed and why?
+   
+ - BONUS: Add a new cube to the scene and apply the same material that is on the 'ReceiverCube'.
+ 
+	- What happens to the material applied to the cubes as the 'ReceiverCube's referenced provider changes?  
+ 
+	- Why is this happening?
