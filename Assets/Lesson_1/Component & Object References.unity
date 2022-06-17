@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97adddf517a0d848be0731abe212970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  provider: {fileID: 0}
+  provider: {fileID: 537076577}
   _providerObject: {fileID: 0}
 --- !u!65 &149217567
 BoxCollider:
